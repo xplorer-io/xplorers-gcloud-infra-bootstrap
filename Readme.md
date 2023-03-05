@@ -33,13 +33,15 @@ Because terraform's backend uses google cloud storage, we need to enable storage
 
 Once the bucket has been created, run the following commands to validate and apply the configuration,
 
-1. Run `terraform init` to initialize terraform's backend and providers.
+1. Run `make init` to initialize terraform's backend and providers.
     1. Google provider is setup.
     2. Google cloud storage is used to store terraform's configuration. State locking is also supported.
 
-2. Run `terraform plan` to generate a plan for the changes to be applied to Google Cloud.
+2. Run `make plan` to generate a plan for the changes to be applied to Google Cloud.
 
-3. Once you have reviewed the changes to be applied, run `terraform apply` to apply changes to Google Cloud.
+3. Once you have reviewed the changes to be applied, run `make apply` to apply changes to Google Cloud.
+
+To delete all the resources created by Terraform, run `make destroy`.
 
 ## Features and services enabled in Google Cloud
 
