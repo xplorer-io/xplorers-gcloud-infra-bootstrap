@@ -32,19 +32,22 @@ plan: ## Run terraform pre-flight checks using terraform plan
 		-var "project_id=$(GOOGLE_CLOUD_PROJECT_ID)" \
 		-var "region=$(GOOGLE_CLOUD_PROJECT_REGION)" \
 		-var "zone=$(GOOGLE_CLOUD_PROJECT_ZONE)" \
+		-var "github_organisation=$(GITHUB_ORGANISATION)"
 
 apply: ## Run terraform pre-flight checks using terraform plan
 	$(info [+] Deploying Xplorers infra resources, standby...)
 	@terraform apply -auto-approve \
 		-var "project_id=$(GOOGLE_CLOUD_PROJECT_ID)" \
 		-var "region=$(GOOGLE_CLOUD_PROJECT_REGION)" \
-		-var "zone=$(GOOGLE_CLOUD_PROJECT_ZONE)"
+		-var "zone=$(GOOGLE_CLOUD_PROJECT_ZONE)" \
+		-var "github_organisation=$(GITHUB_ORGANISATION)"
 
 destroy: ## Delete all resources deployed via terraform
 	$(info [+] Deleting all resources, standby...)
 	@terraform destroy -auto-approve \
 		-var "project_id=$(GOOGLE_CLOUD_PROJECT_ID)" \
 		-var "region=$(GOOGLE_CLOUD_PROJECT_REGION)" \
-		-var "zone=$(GOOGLE_CLOUD_PROJECT_ZONE)"
+		-var "zone=$(GOOGLE_CLOUD_PROJECT_ZONE)" \
+		-var "github_organisation=$(GITHUB_ORGANISATION)"
 
 .PHONY: init plan apply destroy
