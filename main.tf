@@ -19,7 +19,7 @@ resource "google_service_account" "github_actions_service_account" {
 resource "google_service_account_iam_member" "workload_identity_user" {
   service_account_id = google_service_account.github_actions_service_account.name
   role               = var.workload_identity_user_role
-  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions_identity_pool.name}/attribute.repository/${var.github_organisation}/*"
+  member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_actions_identity_pool.name}/attribute.repository/${var.github_organisation}/xplorers-gcloud-infra-bootstrap"
 }
 
 resource "google_project_iam_member" "github_actions_service_account_role_binding" {
