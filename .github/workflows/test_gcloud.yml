@@ -1,0 +1,33 @@
+name: Testing Github Actions with Google Cloud
+
+on: push
+
+jobs:
+  test-gcloud:
+    # ...
+
+    # Add "id-token" with the intended permissions.
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+    # actions/checkout MUST come before auth
+    - uses: actions/checkout@v3
+
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v1
+      with:
+        workload_identity_provider: ${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ secrets.GOOGLE_CLOUD_WORKLOAD_IDP_SERVICE_ACCOUNT }}
+
+    # Install gcloud, `setup-gcloud` automatically picks up authentication from `auth`.
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+
+    # Now you can run gcloud commands authenticated as the impersonated service account.
+    - id: 'gcloud'
+      name: 'gcloud'
+      run: |-
+        gcloud functions list --regions us-central1
