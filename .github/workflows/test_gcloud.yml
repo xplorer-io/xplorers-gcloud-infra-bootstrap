@@ -4,6 +4,7 @@ on: push
 
 jobs:
   test-gcloud:
+    runs-on: ubuntu-latest
     # ...
 
     # Add "id-token" with the intended permissions.
