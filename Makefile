@@ -32,7 +32,9 @@ plan: ## Run terraform pre-flight checks using terraform plan
 		-var "project_id=$(GOOGLE_CLOUD_PROJECT_ID)" \
 		-var "region=$(GOOGLE_CLOUD_PROJECT_REGION)" \
 		-var "zone=$(GOOGLE_CLOUD_PROJECT_ZONE)" \
-		-var "github_organisation=$(GITHUB_ORGANISATION)"
+		-var "github_organisation=$(GITHUB_ORGANISATION)" \
+		-var "github_repository=$(GITHUB_REPOSITORY)" \
+		-var "artifacts_bucket_name=$(BACKEND_BUCKET_NAME)"
 
 apply: ## Run terraform pre-flight checks using terraform plan
 	$(info [+] Deploying Xplorers infra resources, standby...)
@@ -40,7 +42,9 @@ apply: ## Run terraform pre-flight checks using terraform plan
 		-var "project_id=$(GOOGLE_CLOUD_PROJECT_ID)" \
 		-var "region=$(GOOGLE_CLOUD_PROJECT_REGION)" \
 		-var "zone=$(GOOGLE_CLOUD_PROJECT_ZONE)" \
-		-var "github_organisation=$(GITHUB_ORGANISATION)"
+		-var "github_organisation=$(GITHUB_ORGANISATION)" \
+		-var "github_repository=$(GITHUB_REPOSITORY)" \
+		-var "artifacts_bucket_name=$(BACKEND_BUCKET_NAME)"
 
 destroy: ## Delete all resources deployed via terraform
 	$(info [+] Deleting all resources, standby...)
@@ -48,6 +52,7 @@ destroy: ## Delete all resources deployed via terraform
 		-var "project_id=$(GOOGLE_CLOUD_PROJECT_ID)" \
 		-var "region=$(GOOGLE_CLOUD_PROJECT_REGION)" \
 		-var "zone=$(GOOGLE_CLOUD_PROJECT_ZONE)" \
-		-var "github_organisation=$(GITHUB_ORGANISATION)"
-
+		-var "github_organisation=$(GITHUB_ORGANISATION)" \
+		-var "github_repository=$(GITHUB_REPOSITORY)" \
+		-var "artifacts_bucket_name=$(BACKEND_BUCKET_NAME)"
 .PHONY: init plan apply destroy
