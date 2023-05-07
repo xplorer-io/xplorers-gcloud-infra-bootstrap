@@ -25,12 +25,10 @@ variable "zone" {
 variable "service_apis_to_enable" {
   type = list(any)
   default = [
-    "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
     "cloudfunctions.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "iam.googleapis.com",
-    "run.googleapis.com",
     "secretmanager.googleapis.com",
   ]
 }

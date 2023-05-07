@@ -48,4 +48,19 @@ To delete all the resources created by Terraform, run `make destroy`.
 * Enable the following Google Cloud Service APIs,
     * storage.googleapis.com
     * cloudfunctions.googleapis.com
+    * cloudbuild.googleapis.com,
+    * cloudresourcemanager.googleapis.com,
+    * iam.googleapis.com,
+    * secretmanager.googleapis.com,
 * Create a storage bucket to store terraform state information.
+* Use terraform provider gh-oidc to deploy workload identity pool and provider, service account and custom IAM role.
+
+## CI/CD with Github Actions and Google Cloud Workload Identity Federation
+
+Historically, applications running outside the Google Cloud had to rely on service account keys to access resources within the Google Cloud. However, as service account keys are long-lived credentials with permissions to interact and change the state of resources in the cloud, they pose a security risk if not managed appropriately.
+
+Fortunately, through [workload identity federation](https://cloud.google.com/iam/docs/workload-identity-federation), external identities can be granted IAM roles, including the capability to impersonate service accounts and obtain a short-lived token. This approach effectively eliminates the security and maintenance overhead associated with service account keys.
+
+[Service account impersonation](https://cloud.google.com/iam/docs/workload-identity-federation#impersonation) is used toobtain a short-lived OAuth 2.0 access token which lets github actions impersonate the service account to interact with Google Cloud APIs and deploy the application. Also see this [blog post](https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions) to understand the github actions workflow with Google Cloud.
+
+![CI/CD](./assets/xplorers-bot-gcloud-actions-workflow.drawio.png)
