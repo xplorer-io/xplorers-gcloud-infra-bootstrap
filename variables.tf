@@ -30,6 +30,7 @@ variable "service_apis_to_enable" {
     "cloudresourcemanager.googleapis.com",
     "iam.googleapis.com",
     "secretmanager.googleapis.com",
+    "cloudtasks.googleapis.com",
   ]
 }
 
@@ -50,13 +51,13 @@ variable "github_repository" {
 variable "pool_id" {
   type        = string
   description = "Workload Identity Pool ID"
-  default     = "github-actions-pool"
+  default     = "github-actions-idp"
 }
 
 variable "provider_id" {
   type        = string
   description = "Workload Identity Pool Provider id"
-  default     = "github-actions-provider"
+  default     = "github-actions-idp-pool-provider"
 }
 
 variable "github_actions_service_account_id" {

@@ -74,7 +74,11 @@ resource "google_project_iam_custom_role" "github_actions_custom_role" {
     "iam.serviceAccounts.create",
     "iam.serviceAccounts.get",
     "resourcemanager.projects.getIamPolicy",
-    "resourcemanager.projects.setIamPolicy"
+    "resourcemanager.projects.setIamPolicy",
+    "cloudtasks.queues.get",
+    "cloudtasks.queues.create",
+    "cloudtasks.queues.delete",
+    "cloudtasks.queues.update"
   ]
 }
 
